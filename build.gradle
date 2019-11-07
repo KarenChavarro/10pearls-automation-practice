@@ -1,0 +1,29 @@
+group 'com.etsy'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.43")
+    }
+}
+
+dependencies {
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.141.59'
+    compile group: 'net.serenity-bdd', name: 'serenity-core', version: '2.0.82'
+    compile group: 'net.serenity-bdd', name: 'serenity-junit', version: '2.0.82'
+    compile group: 'net.serenity-bdd', name: 'serenity-cucumber', version: '1.9.45'
+    compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '3.7.1'
+}
