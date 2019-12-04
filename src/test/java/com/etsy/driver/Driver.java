@@ -4,6 +4,7 @@ import com.etsy.utils.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class Driver {
 
@@ -11,7 +12,9 @@ public class Driver {
 
     public static void initDriver(){
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        driver = new ChromeDriver(options);
         driver.get(Constants.Url.URL);
 
 //        WebDriverManager.firefoxdriver().setup();
