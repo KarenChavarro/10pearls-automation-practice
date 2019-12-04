@@ -11,10 +11,7 @@ public class Driver {
     public static WebDriver driver;
 
     public static void initDriver(){
-        WebDriverManager.firefoxdriver().setup();
-        FirefoxOptions optionsFirefox = new FirefoxOptions();
-        optionsFirefox.addArguments("--kiosk");
-        driver = new FirefoxDriver(optionsFirefox);
-        driver.get(Constants.Url.URL);
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
     }
 }
