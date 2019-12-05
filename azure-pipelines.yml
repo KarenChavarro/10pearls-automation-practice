@@ -32,7 +32,7 @@ jobs:
       SendGridApiKey: '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'
       FromAddress: 'krend_539@hotmail.com'
       ToAddresses: 'karend.539@gmail.com, karend.chavaro@10pearls.com'
-      Subject: $('Build')_$(Date:yyyyMMdd)$(Rev:.r)
+      Subject: $(Date:yyyyMMdd)$(Rev:.r)
       emailBodyFormat: 'InLine'
       EmailBody: '<h1>Hello!</h1>'
       SendAsHTML: true
