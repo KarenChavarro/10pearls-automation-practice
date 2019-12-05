@@ -33,6 +33,7 @@ steps:
     emailBodyFormat: 'InLine'
     EmailBody: '<h1>Hello!</h1>'
     SendAsHTML: true
+    condition: always()
 # - task: SendEmail@1
 #   inputs:
 #     To: 'karend.chavaro@10pearls.com'
