@@ -24,10 +24,20 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'clean test --info'
 
-- task: SendEmail@1
+- task: SendGridEmail@2
   inputs:
-    To: 'karend.chavaro@10pearls.com'
-    Subject: 'Execution Test'
-    BodyAsHtml: false
-    AddAttachment: false
-    Attachment: '**/TEST-*.xml'
+    SendGridApiKey: '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'
+    FromAddress: 'krend_539@hotmail.com'
+    ToAddresses: 'karend.539@gmail.com, karend.chavaro@10pearls.com'
+    Subject: 'ExecutionTest'
+    emailBodyFormat: 'InLine'
+    EmailBody: '<h1>Hello!</h1>'
+    SendAsHTML: true
+# - task: SendEmail@1
+#   inputs:
+#     To: 'karend.chavaro@10pearls.com'
+#     Subject: 'Execution Test'
+#     Body: '<h1>Hello!</h1>'
+#     BodyAsHtml: true
+#     AddAttachment: false
+    #Attachment: '**/TEST-*.xml'
