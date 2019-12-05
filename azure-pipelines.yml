@@ -23,3 +23,11 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'clean test --info'
+
+- task: SendEmail@1
+  inputs:
+    To: 'karend.chavaro@10pearls.com'
+    Subject: 'Execution Test'
+    BodyAsHtml: false
+    AddAttachment: true
+    Attachment: '**/TEST-*.xml'
