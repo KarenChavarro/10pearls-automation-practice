@@ -9,31 +9,35 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+# name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+jobs:
+- job: Test
+  steps:
+  - task: Gradle@2
+    inputs:
+      workingDirectory: ''
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.8'
+      jdkArchitectureOption: 'x64'
+      publishJUnitResults: true
+      testResultsFiles: '**/TEST-*.xml'
+      tasks: 'clean test --info'
 
-steps:
-- task: Gradle@2
-  inputs:
-    workingDirectory: ''
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'clean test --info'
-
-- task: SendGridEmail@2
-  inputs:
-    SendGridApiKey: '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'
-    FromAddress: 'krend_539@hotmail.com'
-    ToAddresses: 'karend.539@gmail.com, karend.chavaro@10pearls.com'
-    Subject: 'ExecutionTest'
-    emailBodyFormat: 'InLine'
-    EmailBody: '<h1>Hello!</h1>'
-    SendAsHTML: true
-    condition: always()
+- job: Email
+  steps:
+  - task: SendGridEmail@2
+    inputs:
+      SendGridApiKey: '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'
+      FromAddress: 'krend_539@hotmail.com'
+      ToAddresses: 'karend.539@gmail.com, karend.chavaro@10pearls.com'
+      Subject: 'ExecutionTest'
+      emailBodyFormat: 'InLine'
+      EmailBody: '<h1>Hello!</h1>'
+      SendAsHTML: true
+  dependsOn: Test
+  condition: failed()
 # - task: SendEmail@1
 #   inputs:
 #     To: 'karend.chavaro@10pearls.com'
