@@ -29,5 +29,5 @@ steps:
     To: 'karend.chavaro@10pearls.com'
     Subject: 'Execution Test'
     BodyAsHtml: false
-    AddAttachment: true
+    AddAttachment: false
     Attachment: '**/TEST-*.xml'
