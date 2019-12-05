@@ -30,9 +30,9 @@ jobs:
   - task: SendGridEmail@2
     inputs:
       SendGridApiKey: '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'
-      FromAddress: 'krend_539@hotmail.com'
+      FromAddress: 'mateopc12@gmail.com'
       ToAddresses: 'karend.539@gmail.com, karend.chavaro@10pearls.com'
-      Subject: $(Date:yyyyMMdd)$(Rev:.r)
+      Subject: 'Test'
       emailBodyFormat: 'InLine'
       EmailBody: '<h1>Hello!</h1>'
       SendAsHTML: true
