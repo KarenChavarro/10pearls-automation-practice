@@ -34,7 +34,7 @@ jobs:
       ToAddresses: 'karend.539@gmail.com, karend.chavaro@10pearls.com'
       Subject: 'Automated test execution failed'
       emailBodyFormat: 'InLine'
-      EmailBody: '<h1>Hello!</h1><br><h2>Las pruebas fallaron, revise</h2><br><link rel="preload" href="https://dev.azure.com/">'
+      EmailBody: '<h1>Hello!</h1><br>Las pruebas fallaron, revise<br>https://dev.azure.com/'
       SendAsHTML: true
   dependsOn: Test
   condition: failed()
