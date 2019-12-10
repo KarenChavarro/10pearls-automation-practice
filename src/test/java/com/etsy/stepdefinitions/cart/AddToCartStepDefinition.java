@@ -39,7 +39,7 @@ public class AddToCartStepDefinition {
     @When("^the user adds the product to the cart$")
     public void the_user_adds_the_product_to_the_cart() {
         productListSteps.selectFirstProduct();
-        nameProduct = productListSteps.nameProduct;
+        nameProduct = "Test";
         productListSteps.changeTab();
         productDetailSteps.addProduct();
     }

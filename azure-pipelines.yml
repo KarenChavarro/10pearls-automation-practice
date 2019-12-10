@@ -1,0 +1,48 @@
+# Gradle
+# Build your Java project and run tests with Gradle using a Gradle wrapper script.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+# name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+jobs:
+- job: Test
+  steps:
+  - task: Gradle@2
+    inputs:
+      workingDirectory: ''
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.8'
+      jdkArchitectureOption: 'x64'
+      publishJUnitResults: true
+      testResultsFiles: '**/TEST-*.xml'
+      tasks: 'clean test --info'
+
+- job: Email
+  steps:
+  - task: SendGridEmail@2
+    inputs:
+      SendGridApiKey: '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'
+      FromAddress: 'mateopc12@gmail.com'
+      ToAddresses: 'karend.539@gmail.com, karend.chavaro@10pearls.com'
+      Subject: 'Automated test execution failed'
+      emailBodyFormat: 'InLine'
+      EmailBody: '<h1>Hello!</h1><br>Automated test execution <b>Failed!!!</b>'
+      SendAsHTML: true
+  dependsOn: Test
+  condition: failed()
+# - task: SendEmail@1
+#   inputs:
+#     To: 'karend.chavaro@10pearls.com'
+#     Subject: 'Execution Test'
+#     Body: '<h1>Hello!</h1>'
+#     BodyAsHtml: true
+#     AddAttachment: false
+    #Attachment: '**/TEST-*.xml'
