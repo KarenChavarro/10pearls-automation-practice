@@ -34,7 +34,7 @@ jobs:
       ToAddresses: 'karend.539@gmail.com, karend.chavaro@10pearls.com'
       Subject: 'Automated test execution failed'
       emailBodyFormat: 'InLine'
-      EmailBody: '<h1>Hello!</h1><br>Automated test execution <h1>Failed!!!</h1>'
+      EmailBody: '<h1>Hello!</h1><br>Automated test execution <b>Failed!!!</b>'
       SendAsHTML: true
   dependsOn: Test
   condition: failed()
